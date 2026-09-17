@@ -1,0 +1,25 @@
+{
+  "name": "sinais-que-guiam",
+  "version": "1.0.0",
+  "description": "Projeto Sinais que Guiam - configuração inicial do Git testada.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aylaesilva/sinais-que-guiam.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aylaesilva/sinais-que-guiam/issues"
+  },
+  "homepage": "https://github.com/aylaesilva/sinais-que-guiam#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mysql2": "^3.24.4"
+  }
+}
