@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redefinir Senha - Sinais que Guiam</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <header class="cabecalho-secundario">
+    <button type="button" class="botao-voltar" onclick="history.back()" aria-label="Voltar">
+      ←
+    </button>
+    <h1>Redefinir Senha</h1>
+  </header>
+
+  <main class="tela-auth">
+    <form id="form-redefinir-senha" novalidate>
+      <div class="campo">
+        <label for="nova-senha">Nova senha</label>
+        <div class="campo-senha">
+          <input type="password" id="nova-senha" name="nova_senha" required
+                 autocomplete="new-password" minlength="8">
+            <button type="button" class="botao-mostrar-senha" data-alvo="nova-senha" aria-label="Mostrar senha">
+            <i class="ph ph-eye" aria-hidden="true"></i>
+            </button>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="confirmar-nova-senha">Confirmar senha</label>
+        <div class="campo-senha">
+          <input type="password" id="confirmar-nova-senha" name="confirmar_nova_senha" required
+                 autocomplete="new-password" minlength="8">
+            <button type="button" class="botao-mostrar-senha" data-alvo="confirmar-nova-senha" aria-label="Mostrar senha">
+            <i class="ph ph-eye" aria-hidden="true"></i>
+            </button>
+        </div>
+      </div>
+
+      <p id="erro-redefinir" class="mensagem-erro" role="alert" aria-live="assertive"></p>
+
+      <button type="submit" class="botao-primario">Redefinir</button>
+    </form>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

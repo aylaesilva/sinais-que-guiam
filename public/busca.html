@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Busca - Sinais que Guiam</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <header class="cabecalho-busca">
+    <button type="button" class="botao-voltar" onclick="window.location.href='home.html'" aria-label="Voltar para o início">
+      <i class="ph ph-arrow-left" aria-hidden="true"></i>
+    </button>
+    <form class="barra-busca barra-busca-header" role="search" onsubmit="return false;">
+      <label for="busca-input" class="rotulo-oculto">Pesquisar livros, autores</label>
+      <input type="search" id="busca-input" placeholder="Pesquisar livros, autores...">
+      <button type="button" class="botao-microfone" aria-label="Buscar por voz">
+        <i class="ph ph-microphone" aria-hidden="true"></i>
+      </button>
+    </form>
+  </header>
+
+  <main class="conteudo-busca">
+    <div class="filtros" role="group" aria-label="Filtrar por">
+      <button type="button" class="filtro ativo" data-filtro="todos">Todos</button>
+      <button type="button" class="filtro" data-filtro="titulo">Título</button>
+      <button type="button" class="filtro" data-filtro="categoria">Categoria</button>
+      <button type="button" class="filtro" data-filtro="autor">Autor</button>
+    </div>
+
+    <p id="contador-resultados" class="contador-resultados" aria-live="polite">Carregando resultados...</p>
+
+    <ul id="lista-resultados" class="lista-resultados">
+      <!-- Preenchido dinamicamente via JavaScript (Etapa 22) -->
+    </ul>
+  </main>
+
+  <nav class="menu-inferior" aria-label="Navegação principal">
+    <a href="home.html" class="item-menu">
+      <i class="ph ph-house" aria-hidden="true"></i><span>Início</span>
+    </a>
+    <a href="configuracoes.html" class="item-menu">
+      <i class="ph ph-gear" aria-hidden="true"></i><span>Ajustes</span>
+    </a>
+    <a href="qrcode.html" class="item-menu item-menu-destaque">
+      <i class="ph-fill ph-qr-code" aria-hidden="true"></i>
+    </a>
+    <a href="favoritos.html" class="item-menu">
+      <i class="ph ph-bookmark-simple" aria-hidden="true"></i><span>Salvos</span>
+    </a>
+    <a href="perfil.html" class="item-menu">
+      <i class="ph ph-user" aria-hidden="true"></i><span>Perfil</span>
+    </a>
+  </nav>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

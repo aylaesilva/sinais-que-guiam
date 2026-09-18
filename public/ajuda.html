@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajuda - Sinais que Guiam</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <header class="cabecalho-secundario">
+    <button type="button" class="botao-voltar" onclick="window.location.href='home.html'" aria-label="Voltar para o início">
+      <i class="ph ph-arrow-left" aria-hidden="true"></i>
+    </button>
+    <h1>Ajuda</h1>
+  </header>
+
+  <main class="tela-ajuda">
+    <button type="button" id="botao-chamar" class="cartao-chamar">
+      <span class="icone-chamar">
+        <i class="ph ph-question" aria-hidden="true"></i>
+      </span>
+      <span>Pressione para chamar o bibliotecário</span>
+    </button>
+
+    <div id="confirmacao-ajuda" class="confirmacao-ajuda oculto" role="status" aria-live="polite">
+      <i class="ph-fill ph-check-circle" aria-hidden="true"></i>
+      Solicitação enviada! Aguarde a chegada do ajudante.
+    </div>
+
+    <h2 class="titulo-secao">Contatos de ajuda</h2>
+    <ul class="lista-contatos">
+      <li class="contato">
+        <span class="avatar-contato avatar-laranja"><i class="ph ph-user" aria-hidden="true"></i></span>
+        <div>
+          <p class="nome-contato">Biblioteca</p>
+          <a href="tel:+557112345678" class="telefone-contato">(71) 1234-5678</a>
+        </div>
+      </li>
+      <li class="contato">
+        <span class="avatar-contato avatar-amarelo"><i class="ph ph-user" aria-hidden="true"></i></span>
+        <div>
+          <p class="nome-contato">Seção Assistência</p>
+          <a href="tel:+557112345678" class="telefone-contato">(71) 1234-5678</a>
+        </div>
+      </li>
+      <li class="contato">
+        <span class="avatar-contato avatar-verde"><i class="ph ph-user" aria-hidden="true"></i></span>
+        <div>
+          <p class="nome-contato">Central do aluno SENAI</p>
+          <a href="tel:+557112345678" class="telefone-contato">(71) 1234-5678</a>
+        </div>
+      </li>
+    </ul>
+  </main>
+
+ <nav class="menu-inferior" aria-label="Navegação principal">
+    <a href="home.html" class="item-menu">
+      <i class="ph ph-house" aria-hidden="true"></i><span>Início</span>
+    </a>
+    <a href="configuracoes.html" class="item-menu">
+      <i class="ph ph-gear" aria-hidden="true"></i><span>Ajustes</span>
+    </a>
+    <a href="qrcode.html" class="item-menu item-menu-destaque">
+      <i class="ph-fill ph-qr-code" aria-hidden="true"></i>
+    </a>
+    <a href="favoritos.html" class="item-menu">
+      <i class="ph ph-bookmark-simple" aria-hidden="true"></i><span>Salvos</span>
+    </a>
+    <a href="perfil.html" class="item-menu">
+      <i class="ph ph-user" aria-hidden="true"></i><span>Perfil</span>
+    </a>
+  </nav>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Código de verificação - Sinais que Guiam</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <main class="tela-auth">
+    <img src="img/logo-claro.png" alt="Sinais que Guiam" class="logo-auth">
+
+    <h1 class="titulo-auth">Esqueceu a senha?</h1>
+    <p class="subtitulo-auth">Digite seu e-mail</p>
+
+    <form id="form-codigo" novalidate>
+      <fieldset class="campo-codigo">
+        <legend>Insira o código</legend>
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Primeiro dígito do código" required>
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Segundo dígito do código" required>
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Terceiro dígito do código" required>
+        <input type="text" inputmode="numeric" maxlength="1" aria-label="Quarto dígito do código" required>
+      </fieldset>
+
+      <p id="erro-codigo" class="mensagem-erro" role="alert" aria-live="assertive"></p>
+
+      <button type="submit" class="botao-primario">Confirmar</button>
+    </form>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

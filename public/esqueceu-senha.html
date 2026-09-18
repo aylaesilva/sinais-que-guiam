@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Esqueceu a senha - Sinais que Guiam</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <main class="tela-auth">
+    <img src="img/logo-claro.png" alt="Sinais que Guiam" class="logo-auth">
+
+    <h1 class="titulo-auth">Esqueceu a senha?</h1>
+    <p class="subtitulo-auth">Digite seu e-mail</p>
+
+    <form id="form-esqueceu-senha" novalidate>
+      <div class="campo">
+        <label for="email-recuperacao">E-mail</label>
+        <input type="email" id="email-recuperacao" name="email" required autocomplete="email"
+               placeholder="Digite seu e-mail">
+      </div>
+
+      <p id="erro-recuperacao" class="mensagem-erro" role="alert" aria-live="assertive"></p>
+
+      <button type="submit" class="botao-primario">Enviar código</button>
+    </form>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navegação - Sinais que Guiam</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <header class="cabecalho-secundario cabecalho-navegacao">
+    <button type="button" class="botao-voltar" onclick="window.location.href='detalhes-livro.html'" aria-label="Voltar">
+      <i class="ph ph-arrow-left" aria-hidden="true"></i>
+    </button>
+    <h1>Navegação</h1>
+  </header>
+
+  <main class="tela-navegacao">
+    <div class="legenda-mapa">
+      <span><i class="ph-fill ph-circle legenda-voce" aria-hidden="true"></i> Você</span>
+      <span><i class="ph-fill ph-circle legenda-destino" aria-hidden="true"></i> Destino</span>
+      <span><i class="ph ph-minus legenda-rota" aria-hidden="true"></i> Rota</span>
+    </div>
+
+    <div id="grade-estantes" class="grade-estantes">
+      <div class="estante" data-estante="A3">A3</div>
+      <div class="estante" data-estante="B3">B3</div>
+      <div class="estante" data-estante="C3">C3</div>
+
+      <div class="estante" data-estante="A2">A2</div>
+      <div class="estante" data-estante="B2">B2</div>
+      <div class="estante" data-estante="C2">C2</div>
+
+      <div class="estante" data-estante="A1">A1</div>
+      <div class="estante" data-estante="B1">B1</div>
+      <div class="estante" data-estante="C1">C1</div>
+
+      <div id="linha-rota" class="linha-rota" aria-hidden="true"></div>
+    </div>
+
+    <section class="instrucao-atual" role="status" aria-live="polite">
+      <i class="ph-fill ph-user-circle" aria-hidden="true"></i>
+      <div>
+        <p class="rotulo-instrucao">Instrução atual</p>
+        <p id="texto-instrucao">Siga em frente pelo corredor passando por duas estantes. Depois vire à direita na estante A3.</p>
+      </div>
+    </section>
+
+    <div class="acoes-navegacao">
+      <button type="button" id="botao-repetir" class="botao-contorno botao-com-icone">
+        <i class="ph ph-arrow-counter-clockwise" aria-hidden="true"></i>
+        Repetir
+      </button>
+      <button type="button" class="botao-contorno botao-com-icone" onclick="window.location.href='ajuda.html'">
+        <i class="ph ph-question" aria-hidden="true"></i>
+        Pedir Ajuda
+      </button>
+      <button type="button" class="botao-perigo botao-com-icone" onclick="window.location.href='home.html'">
+        <i class="ph-fill ph-stop" aria-hidden="true"></i>
+        Parar
+      </button>
+    </div>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

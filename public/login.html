@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Sinais que Guiam</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <main class="tela-auth">
+    <img src="img/logo-claro.png" alt="Sinais que Guiam" class="logo-auth">
+
+    <h1 class="titulo-auth">Bem-Vindo!</h1>
+    <p class="subtitulo-auth">Entre na sua conta SENAI</p>
+
+    <form id="form-login" novalidate>
+      <div class="campo">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" required autocomplete="email"
+               placeholder="Digite seu e-mail">
+      </div>
+
+      <div class="campo">
+        <label for="senha">Senha</label>
+        <div class="campo-senha">
+          <input type="password" id="senha" name="senha" required autocomplete="current-password">
+            <button type="button" class="botao-mostrar-senha" data-alvo="senha" aria-label="Mostrar senha">
+            <i class="ph ph-eye" aria-hidden="true"></i>
+            </button>
+        </div>
+      </div>
+
+      <p id="erro-login" class="mensagem-erro" role="alert" aria-live="assertive"></p>
+
+      <button type="submit" class="botao-primario">Entrar</button>
+    </form>
+
+    <a href="esqueceu-senha.html" class="link-secundario">Esqueci minha senha</a>
+
+    <div class="divisor"><span>ou</span></div>
+
+    <p class="texto-rodape">
+      Não tem conta? <a href="cadastro.html">Criar conta</a>
+    </p>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1052 @@
+/* ===== Reset básico ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* ===== Botão primário (reutilizado em várias telas) ===== */
+.botao-primario {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1a1a8c;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.botao-primario:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* ===== Tela: Entrada (Splash) ===== */
+.tela-entrada {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 32px;
+  background-color: #1a1a8c;
+  text-align: center;
+}
+
+.logo-entrada {
+  width: 200px;
+  max-width: 70%;
+}
+
+.subtitulo-entrada {
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.tela-entrada .botao-primario {
+  background-color: #ffffff;
+  color: #1a1a8c;
+  max-width: 280px;
+}
+
+.assistente-voz {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 13px;
+  max-width: 280px;
+}
+
+/* ===== Telas de autenticação (Login, Cadastro, etc.) ===== */
+.tela-auth {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.logo-auth {
+  width: 140px;
+  margin-bottom: 16px;
+}
+
+.titulo-auth {
+  font-size: 22px;
+  color: #1a1a1a;
+}
+
+.subtitulo-auth {
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 24px;
+}
+
+#form-login,
+.tela-auth form {
+  width: 100%;
+  max-width: 320px;
+  text-align: left;
+}
+
+.campo {
+  margin-bottom: 16px;
+}
+
+.campo label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 6px;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.campo input:focus-visible,
+.campo select:focus-visible {
+  outline: 2px solid #1a1a8c;
+  outline-offset: 1px;
+}
+
+.campo-senha {
+  position: relative;
+}
+
+.campo-senha input {
+  padding-right: 44px;
+}
+
+.botao-mostrar-senha {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.mensagem-erro {
+  color: #c0392b;
+  font-size: 13px;
+  min-height: 18px;
+  margin-bottom: 8px;
+}
+
+.link-secundario {
+  display: block;
+  margin-top: 16px;
+  color: #1a1a8c;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.divisor {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+  margin: 20px 0;
+  color: #999999;
+  font-size: 13px;
+}
+
+.divisor::before,
+.divisor::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #dddddd;
+}
+
+.divisor span {
+  padding: 0 12px;
+}
+
+.texto-rodape {
+  font-size: 14px;
+  color: #333333;
+}
+
+.texto-rodape a {
+  color: #1a1a8c;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+
+/* ===== Cabeçalho secundário (com botão voltar) ===== */
+.cabecalho-secundario {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background-color: #1a1a8c;
+  color: #ffffff;
+}
+
+.cabecalho-secundario h1 {
+  font-size: 18px;
+}
+
+.botao-voltar {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.botao-voltar:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* ===== Checkbox de termos ===== */
+.campo-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.campo-checkbox input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.campo-checkbox label {
+  font-size: 13px;
+  font-weight: 400;
+  color: #333333;
+}
+
+.campo-checkbox a {
+  color: #1a1a8c;
+  font-weight: 600;
+}
+
+/* ===== Campo de código (4 dígitos) ===== */
+.campo-codigo {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.campo-codigo legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.campo-codigo input {
+  width: 48px;
+  height: 56px;
+  text-align: center;
+  font-size: 22px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+}
+
+.campo-codigo input:focus-visible {
+  outline: 2px solid #1a1a8c;
+  outline-offset: 1px;
+}
+
+/* ===== Utilitário: esconder visualmente mas manter acessível ===== */
+.rotulo-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+/* ===== Cabeçalho da Home ===== */
+.cabecalho-home {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #1a1a8c;
+  color: #ffffff;
+}
+
+.saudacao {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.cabecalho-home h1 {
+  font-size: 20px;
+}
+
+.avatar-topo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #1a1a8c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ===== Conteúdo geral ===== */
+.conteudo-home {
+  padding: 20px;
+  padding-bottom: 90px; /* espaço para o menu inferior fixo */
+}
+
+.titulo-secao {
+  font-size: 16px;
+  margin: 20px 0 12px;
+}
+
+.cabecalho-secao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link-ver-todos {
+  font-size: 13px;
+  color: #1a1a8c;
+  text-decoration: none;
+}
+
+/* ===== Barra de busca ===== */
+.barra-busca {
+  display: flex;
+  align-items: center;
+  background-color: #1a1a8c;
+  border-radius: 10px;
+  padding: 4px 4px 4px 16px;
+  margin-top: 12px;
+}
+
+.barra-busca input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 12px 8px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.barra-busca input::placeholder {
+  color: #cccccc;
+}
+
+.botao-microfone {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* ===== Grade de atalhos ===== */
+.grade-atalhos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.atalho {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background-color: #f0f0f5;
+  border-radius: 12px;
+  padding: 16px 8px;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 12px;
+}
+
+.atalho i {
+  font-size: 22px;
+}
+
+/* ===== Livros recentes ===== */
+.lista-livros-recentes {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.texto-carregando {
+  color: #888888;
+  font-size: 13px;
+}
+
+/* ===== Menu inferior fixo ===== */
+.menu-inferior {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff;
+  border-top: 1px solid #eeeeee;
+  padding: 10px 0;
+}
+
+.item-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Ícones (Phosphor Icons) ===== */
+.item-menu i {
+  font-size: 20px;
+}
+
+.item-menu-destaque {
+  font-size: 22px;
+}
+
+.botao-microfone i,
+.botao-mostrar-senha i {
+  font-size: 16px;
+}
+
+/* ===== Cabeçalho da Busca ===== */
+.cabecalho-busca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background-color: #1a1a8c;
+}
+
+.cabecalho-busca .botao-voltar {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.barra-busca-header {
+  flex: 1;
+  margin-top: 0;
+}
+
+.conteudo-busca {
+  padding: 16px;
+  padding-bottom: 90px;
+}
+
+/* ===== Filtros ===== */
+.filtros {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.filtro {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #dddddd;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.filtro.ativo {
+  background-color: #1a1a8c;
+  border-color: #1a1a8c;
+  color: #ffffff;
+}
+
+.contador-resultados {
+  font-size: 13px;
+  color: #888888;
+  margin-bottom: 12px;
+}
+
+/* ===== Cards de livro ===== */
+.lista-resultados {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-livro {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #eeeeee;
+}
+
+.capa-livro {
+  width: 56px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+  flex-shrink: 0;
+}
+
+.info-livro {
+  flex: 1;
+  min-width: 0;
+}
+
+.titulo-livro {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.autor-livro {
+  font-size: 12px;
+  color: #888888;
+  margin-bottom: 4px;
+}
+
+.local-livro {
+  font-size: 12px;
+  color: #666666;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.status-livro {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.status-disponivel {
+  background-color: #e3f5e9;
+  color: #1e8e4a;
+}
+
+.status-indisponivel {
+  background-color: #fbe4e4;
+  color: #c0392b;
+}
+
+.acoes-livro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.botao-favoritar {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #f5a623;
+  cursor: pointer;
+}
+
+.botao-ver-detalhes {
+  font-size: 12px;
+  color: #1a1a8c;
+  background-color: #eef0fc;
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ===== Capa em destaque ===== */
+.capa-destaque {
+  position: relative;
+  height: 180px;
+  background-color: #eeeeee;
+  overflow: hidden;
+}
+
+.imagem-capa-destaque {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.botao-flutuante {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.botao-flutuante-direita {
+  left: auto;
+  right: 16px;
+  color: #f5a623;
+}
+
+/* ===== Conteúdo dos detalhes ===== */
+.conteudo-detalhe {
+  padding: 20px;
+  padding-bottom: 40px;
+}
+
+.etiqueta-categoria {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #1a1a8c;
+  background-color: #eef0fc;
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+#titulo-livro-detalhe {
+  font-size: 20px;
+  color: #1a1a1a;
+}
+
+.autor-detalhe {
+  font-size: 14px;
+  color: #888888;
+  margin-bottom: 16px;
+}
+
+.bloco-info {
+  background-color: #f7f7fb;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.bloco-info h2 {
+  font-size: 13px;
+  color: #555555;
+  margin-bottom: 8px;
+}
+
+.linha-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 4px 0;
+}
+
+#resumo-livro {
+  font-size: 13px;
+  color: #444444;
+  line-height: 1.5;
+}
+
+.botao-secundario-claro {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background-color: #eef0fc;
+  color: #1a1a8c;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.conteudo-detalhe .botao-primario {
+  margin-bottom: 12px;
+}
+
+.acoes-secundarias {
+  display: flex;
+  gap: 12px;
+}
+
+.botao-contorno {
+  flex: 1;
+  padding: 12px;
+  background-color: #ffffff;
+  border: 1px solid #1a1a8c;
+  color: #1a1a8c;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.botao-favoritar-inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ===== Modal de reserva ===== */
+.modal-fundo {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-fundo.oculto {
+  display: none;
+}
+
+.modal-conteudo {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+}
+
+.icone-sucesso {
+  font-size: 48px;
+  color: #1e8e4a;
+  margin-bottom: 8px;
+}
+
+.modal-conteudo h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.modal-conteudo .linha-info {
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.modal-conteudo .botao-primario {
+  margin-top: 16px;
+}
+
+/* ===== Tela de Navegação ===== */
+.cabecalho-navegacao {
+  background-color: #1a1a8c;
+}
+
+.tela-navegacao {
+  padding: 20px;
+  padding-bottom: 40px;
+}
+
+.legenda-mapa {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: #555555;
+  margin-bottom: 12px;
+}
+
+.legenda-mapa span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legenda-voce { color: #1e8e4a; }
+.legenda-destino { color: #2980ff; }
+.legenda-rota { color: #f5a623; }
+
+/* ===== Grid de estantes ===== */
+.grade-estantes {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background-color: #2b2b6b;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.estante {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3a3a80;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+}
+
+.estante-caminho {
+  background-color: #4a4a95;
+}
+
+.estante-voce {
+  background-color: #1e8e4a;
+}
+
+.estante-destino {
+  background-color: #2980ff;
+}
+
+.linha-rota {
+  position: absolute;
+  height: 4px;
+  background-color: #f5a623;
+  border-radius: 2px;
+  transform-origin: left center;
+  z-index: 1;
+}
+
+/* ===== Instrução atual ===== */
+.instrucao-atual {
+  display: flex;
+  gap: 12px;
+  background-color: #e3f5e9;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 20px;
+}
+
+.instrucao-atual i {
+  font-size: 24px;
+  color: #1e8e4a;
+  flex-shrink: 0;
+}
+
+.rotulo-instrucao {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1e8e4a;
+  margin-bottom: 2px;
+}
+
+#texto-instrucao {
+  font-size: 13px;
+  color: #2f2f2f;
+}
+
+/* ===== Ações da navegação ===== */
+.acoes-navegacao {
+  display: flex;
+  gap: 8px;
+}
+
+.botao-com-icone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 6px;
+  font-size: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.acoes-navegacao .botao-com-icone i {
+  font-size: 18px;
+}
+
+.botao-perigo {
+  flex: 1;
+  background-color: #e74c3c;
+  color: #ffffff;
+  border: none;
+}
+
+/* ===== Tela de Escanear QR Code ===== */
+.cabecalho-escuro {
+  background-color: #2b2b6b;
+}
+
+.tela-qrcode {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px;
+  background-color: #2b2b6b;
+  text-align: center;
+}
+
+.instrucao-qrcode {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.area-scanner {
+  width: 220px;
+  height: 220px;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icone-scanner {
+  font-size: 64px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.status-qrcode {
+  color: #ffcc66;
+  font-size: 13px;
+  min-height: 18px;
+}
+
+.tela-qrcode .botao-primario {
+  max-width: 280px;
+}
+
+/* ===== Tela de Ajuda ===== */
+.tela-ajuda {
+  padding: 20px;
+  padding-bottom: 90px;
+}
+
+.cartao-chamar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 20px;
+  background: linear-gradient(180deg, #1a1a8c, #12124d);
+  color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.icone-chamar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #1a1a8c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.cartao-chamar span:last-child {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.confirmacao-ajuda {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #e3f5e9;
+  color: #1e8e4a;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.confirmacao-ajuda.oculto {
+  display: none;
+}
+
+.lista-contatos {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contato {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.avatar-contato {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.avatar-laranja { background-color: #fde3d3; color: #e07a2f; }
+.avatar-amarelo { background-color: #fdf3d3; color: #c9a227; }
+.avatar-verde   { background-color: #d9f0e3; color: #1e8e4a; }
+
+.nome-contato {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.telefone-contato {
+  font-size: 13px;
+  color: #666666;
+  text-decoration: none;
+}

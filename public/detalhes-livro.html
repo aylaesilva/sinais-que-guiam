@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do Livro - Sinais que Guiam</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <div class="capa-destaque">
+    <img id="capa-livro-detalhe" src="" alt="" class="imagem-capa-destaque">
+    <button type="button" class="botao-voltar botao-flutuante" onclick="window.location.href='busca.html'" aria-label="Voltar">
+      <i class="ph ph-arrow-left" aria-hidden="true"></i>
+    </button>
+    <button type="button" id="botao-favoritar-topo" class="botao-flutuante botao-flutuante-direita" aria-label="Favoritar">
+      <i class="ph ph-star" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <main class="conteudo-detalhe">
+    <span id="categoria-livro" class="etiqueta-categoria">Tecnologia</span>
+    <h1 id="titulo-livro-detalhe">Título do livro</h1>
+    <p id="autor-livro-detalhe" class="autor-detalhe">Autor</p>
+
+    <section class="bloco-info" aria-labelledby="titulo-localizacao">
+      <h2 id="titulo-localizacao">Localização</h2>
+      <div class="linha-info">
+        <span>Estante</span>
+        <strong id="estante-livro">—</strong>
+      </div>
+      <div class="linha-info">
+        <span>Corredor</span>
+        <strong id="corredor-livro">—</strong>
+      </div>
+      <div class="linha-info">
+        <span>Prateleira</span>
+        <strong id="prateleira-livro">—</strong>
+      </div>
+    </section>
+
+    <section class="bloco-info" aria-labelledby="titulo-resumo">
+      <h2 id="titulo-resumo">Resumo</h2>
+      <p id="resumo-livro">Carregando resumo...</p>
+    </section>
+
+    <button type="button" id="botao-ler-resumo" class="botao-secundario-claro">
+      <i class="ph ph-speaker-high" aria-hidden="true"></i>
+      Ler descrição em voz alta
+    </button>
+
+    <button type="button" id="botao-iniciar-navegacao" class="botao-primario" onclick="window.location.href='navegacao.html'">
+      Iniciar navegação
+    </button>
+
+    <div class="acoes-secundarias">
+      <button type="button" id="botao-reservar" class="botao-contorno">Reservar</button>
+      <button type="button" id="botao-favoritar" class="botao-contorno botao-favoritar-inline">
+        <i class="ph ph-star" aria-hidden="true"></i>
+        Favoritar
+      </button>
+    </div>
+  </main>
+
+  <div id="modal-reserva" class="modal-fundo oculto" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-reserva">
+    <div class="modal-conteudo">
+      <i class="ph-fill ph-check-circle icone-sucesso" aria-hidden="true"></i>
+      <h2 id="titulo-modal-reserva">Reserva confirmada!</h2>
+      <div class="linha-info">
+        <span>Código de reserva</span>
+        <strong id="modal-codigo-reserva">—</strong>
+      </div>
+      <div class="linha-info">
+        <span>Data de empréstimo</span>
+        <strong id="modal-data-emprestimo">—</strong>
+      </div>
+      <div class="linha-info">
+        <span>Retirado por</span>
+        <strong id="modal-nome-usuario">—</strong>
+      </div>
+      <div class="linha-info">
+        <span>Data de devolução</span>
+        <strong id="modal-data-devolucao">—</strong>
+      </div>
+      <button type="button" class="botao-primario" onclick="document.getElementById('modal-reserva').classList.add('oculto')">
+        Fechar
+      </button>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
