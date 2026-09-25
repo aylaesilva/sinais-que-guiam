@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurações - Sinais que Guiam</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <header class="cabecalho-secundario">
+    <h1>Configurações</h1>
+  </header>
+
+  <main class="tela-configuracoes">
+    <section class="bloco-configuracao" aria-labelledby="titulo-acessibilidade">
+      <h2 id="titulo-acessibilidade">Acessibilidade</h2>
+
+      <div class="linha-toggle">
+        <div class="descricao-toggle">
+          <i class="ph ph-eye" aria-hidden="true"></i>
+          <div>
+            <p class="nome-opcao">Alto Contraste</p>
+            <p class="descricao-opcao">Aumenta o contraste da tela</p>
+          </div>
+        </div>
+        <label class="interruptor">
+          <input type="checkbox" id="toggle-contraste">
+          <span class="trilho-interruptor"></span>
+        </label>
+      </div>
+
+      <div class="linha-toggle">
+        <div class="descricao-toggle">
+          <i class="ph ph-cell-signal-full" aria-hidden="true"></i>
+          <div>
+            <p class="nome-opcao">Vibração</p>
+            <p class="descricao-opcao">Vibrar o dispositivo</p>
+          </div>
+        </div>
+        <label class="interruptor">
+          <input type="checkbox" id="toggle-vibracao">
+          <span class="trilho-interruptor"></span>
+        </label>
+      </div>
+    </section>
+
+    <section class="bloco-configuracao" aria-labelledby="titulo-texto-voz">
+      <h2 id="titulo-texto-voz">Texto e Voz</h2>
+
+      <p class="rotulo-grupo" id="rotulo-tamanho-fonte">
+        <i class="ph ph-text-aa" aria-hidden="true"></i> Tamanho da Fonte
+      </p>
+      <div class="grupo-opcoes" role="radiogroup" aria-labelledby="rotulo-tamanho-fonte" id="grupo-fonte">
+        <button type="button" class="opcao-pilula" data-valor="P" role="radio" aria-checked="false">P</button>
+        <button type="button" class="opcao-pilula" data-valor="M" role="radio" aria-checked="true">M</button>
+        <button type="button" class="opcao-pilula ativo" data-valor="G" role="radio" aria-checked="true">G</button>
+        <button type="button" class="opcao-pilula" data-valor="XG" role="radio" aria-checked="false">XG</button>
+        <button type="button" class="opcao-pilula" data-valor="XXG" role="radio" aria-checked="false">XXG</button>
+      </div>
+
+      <p class="rotulo-grupo" id="rotulo-velocidade-voz">
+        <i class="ph ph-timer" aria-hidden="true"></i> Velocidade da Voz
+      </p>
+      <div class="grupo-opcoes" role="radiogroup" aria-labelledby="rotulo-velocidade-voz" id="grupo-velocidade">
+        <button type="button" class="opcao-pilula" data-valor="0.5x" role="radio" aria-checked="false">0.5x</button>
+        <button type="button" class="opcao-pilula ativo" data-valor="1.0x" role="radio" aria-checked="true">1.0x</button>
+        <button type="button" class="opcao-pilula" data-valor="2.0x" role="radio" aria-checked="false">2.0x</button>
+      </div>
+    </section>
+
+    <section class="bloco-configuracao" aria-labelledby="titulo-aparencia">
+      <h2 id="titulo-aparencia">Aparência</h2>
+      <div class="grupo-tema" role="radiogroup" aria-labelledby="titulo-aparencia">
+        <button type="button" class="opcao-tema ativo" data-tema="claro" role="radio" aria-checked="true">
+          <i class="ph ph-sun" aria-hidden="true"></i>
+          Claro
+        </button>
+        <button type="button" class="opcao-tema" data-tema="escuro" role="radio" aria-checked="false">
+          <i class="ph ph-moon" aria-hidden="true"></i>
+          Escuro
+        </button>
+      </div>
+
+      <div class="campo-select">
+        <i class="ph ph-globe" aria-hidden="true"></i>
+        <div>
+          <label for="select-idioma" class="rotulo-select">Idioma</label>
+          <select id="select-idioma">
+            <option value="pt-BR" selected>Português, Brasil</option>
+            <option value="en-US">English, US</option>
+            <option value="es-ES">Español</option>
+          </select>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="menu-inferior" aria-label="Navegação principal">
+    <a href="home.html" class="item-menu">
+      <i class="ph ph-house" aria-hidden="true"></i><span>Início</span>
+    </a>
+    <a href="configuracoes.html" class="item-menu ativo">
+      <i class="ph-fill ph-gear" aria-hidden="true"></i><span>Ajustes</span>
+    </a>
+    <a href="qrcode.html" class="item-menu item-menu-destaque">
+      <i class="ph-fill ph-qr-code" aria-hidden="true"></i>
+    </a>
+    <a href="favoritos.html" class="item-menu">
+      <i class="ph ph-bookmark-simple" aria-hidden="true"></i><span>Salvos</span>
+    </a>
+    <a href="perfil.html" class="item-menu">
+      <i class="ph ph-user" aria-hidden="true"></i><span>Perfil</span>
+    </a>
+  </nav>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

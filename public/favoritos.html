@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favoritos - Sinais que Guiam</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <header class="cabecalho-secundario">
+    <button type="button" class="botao-voltar" onclick="window.location.href='home.html'" aria-label="Voltar para o início">
+      <i class="ph ph-arrow-left" aria-hidden="true"></i>
+    </button>
+    <h1>Favoritos</h1>
+  </header>
+
+  <main class="tela-favoritos">
+    <label for="busca-favoritos" class="rotulo-oculto">Buscar nos favoritos</label>
+    <input type="search" id="busca-favoritos" class="campo-busca-simples" placeholder="Buscar nos favoritos...">
+
+    <p id="mensagem-vazia-favoritos" class="mensagem-vazia oculto">
+      Você ainda não tem livros favoritos.
+    </p>
+
+    <ul id="lista-favoritos" class="lista-favoritos">
+      <!-- Preenchido dinamicamente via JavaScript (Etapa 22) -->
+    </ul>
+  </main>
+
+  <nav class="menu-inferior" aria-label="Navegação principal">
+    <a href="home.html" class="item-menu">
+      <i class="ph ph-house" aria-hidden="true"></i><span>Início</span>
+    </a>
+    <a href="configuracoes.html" class="item-menu">
+      <i class="ph ph-gear" aria-hidden="true"></i><span>Ajustes</span>
+    </a>
+    <a href="qrcode.html" class="item-menu item-menu-destaque">
+      <i class="ph-fill ph-qr-code" aria-hidden="true"></i>
+    </a>
+    <a href="favoritos.html" class="item-menu ativo">
+      <i class="ph-fill ph-bookmark-simple" aria-hidden="true"></i><span>Salvos</span>
+    </a>
+    <a href="perfil.html" class="item-menu">
+      <i class="ph ph-user" aria-hidden="true"></i><span>Perfil</span>
+    </a>
+  </nav>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1050,3 +1050,465 @@ body {
   color: #666666;
   text-decoration: none;
 }
+
+/* ===== Tela de Favoritos ===== */
+.tela-favoritos {
+  padding: 20px;
+  padding-bottom: 90px;
+}
+
+.campo-busca-simples {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.campo-busca-simples:focus-visible {
+  outline: 2px solid #1a1a8c;
+  outline-offset: 1px;
+}
+
+.mensagem-vazia {
+  text-align: center;
+  color: #888888;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+.mensagem-vazia.oculto {
+  display: none;
+}
+
+.lista-favoritos {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.botao-remover-favorito {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 18px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+/* ===== Tela de Histórico ===== */
+.tela-historico {
+  padding: 20px;
+  padding-bottom: 90px;
+}
+
+.lista-historico {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-historico {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.icone-historico {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.icone-historico-verde {
+  background-color: #d9f0e3;
+  color: #1e8e4a;
+}
+
+.icone-historico-azul {
+  background-color: #dbe7fb;
+  color: #2980ff;
+}
+
+.titulo-historico {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.data-historico {
+  font-size: 12px;
+  color: #888888;
+}
+
+/* ===== Cabeçalho do Perfil ===== */
+.cabecalho-perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 20px;
+  background: linear-gradient(180deg, #1a1a8c, #12124d);
+  color: #ffffff;
+  text-align: center;
+}
+
+.avatar-grande {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #f2b6e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.cabecalho-perfil h1 {
+  font-size: 18px;
+}
+
+.curso-perfil {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.badge-deficiencia {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+/* ===== Conteúdo do Perfil ===== */
+.conteudo-perfil {
+  padding: 20px;
+  padding-bottom: 90px;
+}
+
+.campo-exibicao {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.campo-exibicao i {
+  font-size: 18px;
+  color: #1a1a8c;
+}
+
+.rotulo-exibicao {
+  font-size: 11px;
+  color: #888888;
+}
+
+.valor-exibicao {
+  font-size: 14px;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.acoes-perfil {
+  display: flex;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.botao-com-icone-inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.botao-perigo-claro {
+  width: 100%;
+  padding: 12px;
+  background-color: #fbe4e4;
+  color: #c0392b;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* ===== Tela de Configurações ===== */
+.tela-configuracoes {
+  padding: 20px;
+  padding-bottom: 90px;
+}
+
+.bloco-configuracao {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.bloco-configuracao h2 {
+  font-size: 13px;
+  color: #1a1a8c;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.linha-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.descricao-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.descricao-toggle i {
+  font-size: 18px;
+  color: #1a1a8c;
+}
+
+.nome-opcao {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.descricao-opcao {
+  font-size: 11px;
+  color: #888888;
+}
+
+/* ===== Interruptor (toggle switch) ===== */
+.interruptor {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.interruptor input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.trilho-interruptor {
+  position: absolute;
+  inset: 0;
+  background-color: #dddddd;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.trilho-interruptor::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.interruptor input:checked + .trilho-interruptor {
+  background-color: #1a1a8c;
+}
+
+.interruptor input:checked + .trilho-interruptor::before {
+  transform: translateX(20px);
+}
+
+.interruptor input:focus-visible + .trilho-interruptor {
+  outline: 2px solid #1a1a8c;
+  outline-offset: 2px;
+}
+
+/* ===== Grupos de pílulas ===== */
+.rotulo-grupo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #555555;
+  margin: 12px 0 8px;
+}
+
+.grupo-opcoes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.opcao-pilula {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #dddddd;
+  background-color: #f7f7fb;
+  color: #333333;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.opcao-pilula.ativo {
+  background-color: #1a1a8c;
+  border-color: #1a1a8c;
+  color: #ffffff;
+}
+
+/* ===== Tema (Claro/Escuro) ===== */
+.grupo-tema {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.opcao-tema {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #dddddd;
+  background-color: #f7f7fb;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.opcao-tema i {
+  font-size: 20px;
+}
+
+.opcao-tema.ativo {
+  background-color: #1a1a8c;
+  border-color: #1a1a8c;
+  color: #ffffff;
+}
+
+/* ===== Select de idioma ===== */
+.campo-select {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.campo-select i {
+  font-size: 18px;
+  color: #1a1a8c;
+}
+
+.rotulo-select {
+  display: block;
+  font-size: 11px;
+  color: #888888;
+  margin-bottom: 2px;
+}
+
+.campo-select select {
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  background: transparent;
+  padding: 4px 0;
+}
+
+/* ===================================================
+   TEMA ESCURO — aplicado via [data-tema="escuro"] na <html>
+   =================================================== */
+html[data-tema="escuro"] body {
+  background-color: #12122e;
+  color: #e8e8f0;
+}
+
+html[data-tema="escuro"] .bloco-configuracao,
+html[data-tema="escuro"] .card-livro,
+html[data-tema="escuro"] .contato,
+html[data-tema="escuro"] .item-historico,
+html[data-tema="escuro"] .campo-exibicao,
+html[data-tema="escuro"] .menu-inferior {
+  background-color: #1e1e4a;
+  border-color: #2b2b6b;
+}
+
+html[data-tema="escuro"] .nome-opcao,
+html[data-tema="escuro"] .valor-exibicao,
+html[data-tema="escuro"] .titulo-livro,
+html[data-tema="escuro"] .titulo-historico,
+html[data-tema="escuro"] .nome-contato {
+  color: #ffffff;
+}
+
+html[data-tema="escuro"] .opcao-pilula,
+html[data-tema="escuro"] .opcao-tema {
+  background-color: #2b2b6b;
+  border-color: #3a3a80;
+  color: #e8e8f0;
+}
+
+html[data-tema="escuro"] .item-menu {
+  color: #9a9ac0;
+}
+
+/* ===================================================
+   ALTO CONTRASTE — aplicado via .alto-contraste na <html>
+   =================================================== */
+html.alto-contraste body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+html.alto-contraste .botao-primario,
+html.alto-contraste .opcao-pilula.ativo,
+html.alto-contraste .opcao-tema.ativo {
+  background-color: #000000;
+  color: #ffff00;
+  border: 2px solid #ffff00;
+}
+
+html.alto-contraste .campo input,
+html.alto-contraste .campo select {
+  border: 2px solid #000000;
+}
+
+/* ===================================================
+   TAMANHO DA FONTE — aplicado via [data-tamanho-fonte] na <html>
+   =================================================== */
+html[data-tamanho-fonte="P"] body { font-size: 14px; }
+html[data-tamanho-fonte="M"] body { font-size: 16px; }
+html[data-tamanho-fonte="G"] body { font-size: 18px; }
+html[data-tamanho-fonte="XG"] body { font-size: 20px; }
+html[data-tamanho-fonte="XXG"] body { font-size: 24px; }

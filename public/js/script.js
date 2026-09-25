@@ -149,3 +149,193 @@ if (botaoChamar) {
     document.getElementById('confirmacao-ajuda').classList.remove('oculto');
   });
 }
+
+// ===== Remover favorito (delegação de evento, já que os cards são gerados dinamicamente) =====
+const listaFavoritos = document.getElementById('lista-favoritos');
+if (listaFavoritos) {
+  listaFavoritos.addEventListener('click', (evento) => {
+    const botaoRemover = evento.target.closest('.botao-remover-favorito');
+    if (!botaoRemover) return;
+
+    const card = botaoRemover.closest('.card-livro');
+    card.remove();
+    // A remoção real no banco (tabela favorito) entra na Etapa 22
+
+    if (listaFavoritos.children.length === 0) {
+      document.getElementById('mensagem-vazia-favoritos').classList.remove('oculto');
+    }
+  });
+}
+
+// ===== Card de livro favoritado (com botão de remover, usado em Favoritos) =====
+function criarCardFavorito(livro) {
+  return `
+    <li class="card-livro">
+      <img src="${livro.capa_url}" alt="" class="capa-livro">
+      <div class="info-livro">
+        <p class="titulo-livro">${livro.titulo}</p>
+        <p class="autor-livro">${livro.autor}</p>
+        <a href="detalhes-livro.html?id=${livro.id}" class="botao-ver-detalhes">Ver livro</a>
+      </div>
+      <button type="button" class="botao-remover-favorito" data-livro-id="${livro.id}" aria-label="Remover ${livro.titulo} dos favoritos">
+        <i class="ph ph-trash" aria-hidden="true"></i>
+      </button>
+    </li>
+  `;
+}
+
+// ===== Card de item do histórico =====
+function criarItemHistorico(item) {
+  // item.tipo_acao: 'navegacao' ou 'busca' (definido na tabela historico do banco)
+  const icone = item.tipo_acao === 'navegacao' ? 'ph-map-pin' : 'ph-magnifying-glass';
+  const corIcone = item.tipo_acao === 'navegacao' ? 'icone-historico-verde' : 'icone-historico-azul';
+
+  return `
+    <li class="item-historico">
+      <span class="icone-historico ${corIcone}">
+        <i class="ph-fill ${icone}" aria-hidden="true"></i>
+      </span>
+      <div>
+        <p class="titulo-historico">${item.descricao}</p>
+        <p class="data-historico">${item.data_formatada}</p>
+      </div>
+    </li>
+  `;
+}
+
+// ===== Gerar inicial do avatar a partir do nome =====
+function gerarInicialAvatar(nomeCompleto) {
+  return nomeCompleto.trim().charAt(0).toUpperCase();
+}
+
+// Exemplo de uso (na Etapa 22, "usuarioLogado.nome" virá da API):
+const elementoInicial = document.getElementById('inicial-avatar-grande');
+if (elementoInicial) {
+  const nomeExemplo = document.getElementById('nome-completo-perfil').textContent;
+  elementoInicial.textContent = gerarInicialAvatar(nomeExemplo);
+}
+
+// ===== Ações do Perfil =====
+const botaoSair = document.getElementById('botao-sair');
+if (botaoSair) {
+  botaoSair.addEventListener('click', () => {
+    const confirmar = confirm('Tem certeza que deseja sair da conta?');
+    if (confirmar) {
+      // Etapa 22: limpar sessão/token e então redirecionar
+      window.location.href = 'login.html';
+    }
+  });
+}
+
+const botaoEditarDados = document.getElementById('botao-editar-dados');
+if (botaoEditarDados) {
+  botaoEditarDados.addEventListener('click', () => {
+    alert('Edição de dados será implementada na Etapa 22, junto com o back-end.');
+  });
+}
+
+const botaoAlterarSenha = document.getElementById('botao-alterar-senha');
+if (botaoAlterarSenha) {
+  botaoAlterarSenha.addEventListener('click', () => {
+    window.location.href = 'redefinir-senha.html';
+  });
+}
+
+// ===== Configurações: aplicar e salvar preferências =====
+const CHAVE_PREFERENCIAS = 'sinaisQueGuiam_preferencias';
+
+function carregarPreferencias() {
+  const salvas = localStorage.getItem(CHAVE_PREFERENCIAS);
+  return salvas ? JSON.parse(salvas) : {
+    contraste: false,
+    vibracao: false,
+    tamanhoFonte: 'G',
+    velocidadeVoz: '1.0x',
+    tema: 'claro',
+    idioma: 'pt-BR',
+  };
+}
+
+function salvarPreferencias(prefs) {
+  localStorage.setItem(CHAVE_PREFERENCIAS, JSON.stringify(prefs));
+  // Etapa 22: também enviar para o back-end (PUT /usuario/preferencias)
+}
+
+function aplicarPreferencias(prefs) {
+  document.documentElement.dataset.tema = prefs.tema;
+  document.documentElement.classList.toggle('alto-contraste', prefs.contraste);
+  document.documentElement.dataset.tamanhoFonte = prefs.tamanhoFonte;
+}
+
+// Aplica em TODA página, não só em Configurações
+let preferenciasAtuais = carregarPreferencias();
+aplicarPreferencias(preferenciasAtuais);
+
+// A partir daqui, só roda se estivermos na tela de Configurações
+if (document.getElementById('toggle-contraste')) {
+  const toggleContraste = document.getElementById('toggle-contraste');
+  const toggleVibracao = document.getElementById('toggle-vibracao');
+
+  toggleContraste.checked = preferenciasAtuais.contraste;
+  toggleVibracao.checked = preferenciasAtuais.vibracao;
+
+  toggleContraste.addEventListener('change', () => {
+    preferenciasAtuais.contraste = toggleContraste.checked;
+    salvarPreferencias(preferenciasAtuais);
+    aplicarPreferencias(preferenciasAtuais);
+  });
+
+  toggleVibracao.addEventListener('change', () => {
+    preferenciasAtuais.vibracao = toggleVibracao.checked;
+    salvarPreferencias(preferenciasAtuais);
+    if (preferenciasAtuais.vibracao && navigator.vibrate) {
+      navigator.vibrate(100); // feedback imediato ao ativar
+    }
+  });
+
+  // ===== Grupos de opções (Tamanho da Fonte, Velocidade da Voz) =====
+  function configurarGrupoPilulas(idGrupo, chavePreferencia) {
+    const grupo = document.getElementById(idGrupo);
+    grupo.querySelectorAll('.opcao-pilula').forEach((botao) => {
+      botao.addEventListener('click', () => {
+        grupo.querySelectorAll('.opcao-pilula').forEach((b) => {
+          b.classList.remove('ativo');
+          b.setAttribute('aria-checked', 'false');
+        });
+        botao.classList.add('ativo');
+        botao.setAttribute('aria-checked', 'true');
+
+        preferenciasAtuais[chavePreferencia] = botao.dataset.valor;
+        salvarPreferencias(preferenciasAtuais);
+        aplicarPreferencias(preferenciasAtuais);
+      });
+    });
+  }
+
+  configurarGrupoPilulas('grupo-fonte', 'tamanhoFonte');
+  configurarGrupoPilulas('grupo-velocidade', 'velocidadeVoz');
+
+  // ===== Tema (Claro/Escuro) =====
+  document.querySelectorAll('.opcao-tema').forEach((botao) => {
+    botao.addEventListener('click', () => {
+      document.querySelectorAll('.opcao-tema').forEach((b) => {
+        b.classList.remove('ativo');
+        b.setAttribute('aria-checked', 'false');
+      });
+      botao.classList.add('ativo');
+      botao.setAttribute('aria-checked', 'true');
+
+      preferenciasAtuais.tema = botao.dataset.tema;
+      salvarPreferencias(preferenciasAtuais);
+      aplicarPreferencias(preferenciasAtuais);
+    });
+  });
+
+  // ===== Idioma =====
+  const selectIdioma = document.getElementById('select-idioma');
+  selectIdioma.value = preferenciasAtuais.idioma;
+  selectIdioma.addEventListener('change', () => {
+    preferenciasAtuais.idioma = selectIdioma.value;
+    salvarPreferencias(preferenciasAtuais);
+  });
+}

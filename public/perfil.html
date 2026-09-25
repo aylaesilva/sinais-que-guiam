@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil - Sinais que Guiam</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <header class="cabecalho-perfil">
+    <div class="avatar-grande" id="avatar-grande">
+      <span id="inicial-avatar-grande">M</span>
+    </div>
+    <h1 id="nome-completo-perfil">Maria</h1>
+    <p id="curso-perfil" class="curso-perfil">Téc. Informática para Internet</p>
+    <span id="badge-deficiencia" class="badge-deficiencia">Deficiência Visual Parcial</span>
+  </header>
+
+  <main class="conteudo-perfil">
+    <div class="campo-exibicao">
+      <i class="ph ph-user" aria-hidden="true"></i>
+      <div>
+        <p class="rotulo-exibicao">Nome</p>
+        <p id="nome-perfil" class="valor-exibicao">Maria</p>
+      </div>
+    </div>
+
+    <div class="campo-exibicao">
+      <i class="ph ph-envelope-simple" aria-hidden="true"></i>
+      <div>
+        <p class="rotulo-exibicao">E-mail</p>
+        <p id="email-perfil" class="valor-exibicao">maria.e.santos33@ba.estudante.senai.br</p>
+      </div>
+    </div>
+
+    <div class="campo-exibicao">
+      <i class="ph ph-phone" aria-hidden="true"></i>
+      <div>
+        <p class="rotulo-exibicao">Telefone</p>
+        <p id="telefone-perfil" class="valor-exibicao">(71) 99999-9999</p>
+      </div>
+    </div>
+
+    <div class="acoes-perfil">
+      <button type="button" id="botao-editar-dados" class="botao-contorno botao-com-icone-inline">
+        <i class="ph ph-pencil-simple" aria-hidden="true"></i>
+        Editar dados
+      </button>
+      <button type="button" id="botao-alterar-senha" class="botao-contorno botao-com-icone-inline">
+        <i class="ph ph-lock-key" aria-hidden="true"></i>
+        Alterar senha
+      </button>
+    </div>
+
+    <button type="button" id="botao-sair" class="botao-perigo-claro">
+      <i class="ph ph-sign-out" aria-hidden="true"></i>
+      Sair da Conta
+    </button>
+  </main>
+
+  <nav class="menu-inferior" aria-label="Navegação principal">
+    <a href="home.html" class="item-menu">
+      <i class="ph ph-house" aria-hidden="true"></i><span>Início</span>
+    </a>
+    <a href="configuracoes.html" class="item-menu">
+      <i class="ph ph-gear" aria-hidden="true"></i><span>Ajustes</span>
+    </a>
+    <a href="qrcode.html" class="item-menu item-menu-destaque">
+      <i class="ph-fill ph-qr-code" aria-hidden="true"></i>
+    </a>
+    <a href="favoritos.html" class="item-menu">
+      <i class="ph ph-bookmark-simple" aria-hidden="true"></i><span>Salvos</span>
+    </a>
+    <a href="perfil.html" class="item-menu ativo">
+      <i class="ph-fill ph-user" aria-hidden="true"></i><span>Perfil</span>
+    </a>
+  </nav>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

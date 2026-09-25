@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Histórico - Sinais que Guiam</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <header class="cabecalho-secundario">
+    <button type="button" class="botao-voltar" onclick="window.location.href='home.html'" aria-label="Voltar para o início">
+      <i class="ph ph-arrow-left" aria-hidden="true"></i>
+    </button>
+    <h1>Histórico</h1>
+  </header>
+
+  <main class="tela-historico">
+    <p id="mensagem-vazia-historico" class="mensagem-vazia oculto">
+      Nenhuma atividade registrada ainda.
+    </p>
+
+    <ul id="lista-historico" class="lista-historico">
+      <!-- Preenchido dinamicamente via JavaScript (Etapa 22) -->
+    </ul>
+  </main>
+
+  <nav class="menu-inferior" aria-label="Navegação principal">
+    <a href="home.html" class="item-menu">
+      <i class="ph ph-house" aria-hidden="true"></i><span>Início</span>
+    </a>
+    <a href="configuracoes.html" class="item-menu">
+      <i class="ph ph-gear" aria-hidden="true"></i><span>Ajustes</span>
+    </a>
+    <a href="qrcode.html" class="item-menu item-menu-destaque">
+      <i class="ph-fill ph-qr-code" aria-hidden="true"></i>
+    </a>
+    <a href="favoritos.html" class="item-menu">
+      <i class="ph ph-bookmark-simple" aria-hidden="true"></i><span>Salvos</span>
+    </a>
+    <a href="perfil.html" class="item-menu">
+      <i class="ph ph-user" aria-hidden="true"></i><span>Perfil</span>
+    </a>
+  </nav>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
