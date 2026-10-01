@@ -2,9 +2,10 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 const db = require('./db');
-
+const rotasAuth = require('./routes/auth');
 const app = express();
 const PORT = process.env.PORT || 3000;
+
 
 // ===== Middlewares =====
 app.use(express.json()); // permite receber JSON no corpo das requisições (POST/PUT)

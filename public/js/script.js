@@ -339,3 +339,74 @@ if (document.getElementById('toggle-contraste')) {
     salvarPreferencias(preferenciasAtuais);
   });
 }
+
+// ===== Envio do formulário de Cadastro =====
+const formCadastro = document.getElementById('form-cadastro');
+if (formCadastro) {
+  formCadastro.addEventListener('submit', async (evento) => {
+    evento.preventDefault();
+    const erroEl = document.getElementById('erro-cadastro');
+    erroEl.textContent = '';
+
+    const dados = {
+      nome: document.getElementById('nome').value,
+      email: document.getElementById('email-cadastro').value,
+      telefone: document.getElementById('telefone').value,
+      senha: document.getElementById('senha-cadastro').value,
+      confirmar_senha: document.getElementById('confirmar-senha').value,
+      tipo_deficiencia: document.getElementById('tipo-deficiencia').value,
+    };
+
+    try {
+      const resposta = await fetch('/api/cadastro', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados),
+      });
+      const resultado = await resposta.json();
+
+      if (!resposta.ok) {
+        erroEl.textContent = resultado.erro;
+        return;
+      }
+
+      window.location.href = 'login.html';
+    } catch (erro) {
+      erroEl.textContent = 'Não foi possível conectar ao servidor. Tente novamente.';
+    }
+  });
+}
+
+// ===== Envio do formulário de Login =====
+const formLogin = document.getElementById('form-login');
+if (formLogin) {
+  formLogin.addEventListener('submit', async (evento) => {
+    evento.preventDefault();
+    const erroEl = document.getElementById('erro-login');
+    erroEl.textContent = '';
+
+    const dados = {
+      email: document.getElementById('email').value,
+      senha: document.getElementById('senha').value,
+    };
+
+    try {
+      const resposta = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados),
+      });
+      const resultado = await resposta.json();
+
+      if (!resposta.ok) {
+        erroEl.textContent = resultado.erro;
+        return;
+      }
+
+      sessionStorage.setItem('usuarioLogado', JSON.stringify(resultado.usuario));
+      window.location.href = 'home.html';
+    } catch (erro) {
+      erroEl.textContent = 'Não foi possível conectar ao servidor. Tente novamente.';
+    }
+  });
+}
