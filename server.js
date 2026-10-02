@@ -3,6 +3,7 @@ const path = require('path');
 require('dotenv').config();
 const db = require('./db');
 const rotasAuth = require('./routes/auth');
+const rotasLivros = require('./routes/livros');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -10,6 +11,9 @@ const PORT = process.env.PORT || 3000;
 // ===== Middlewares =====
 app.use(express.json()); // permite receber JSON no corpo das requisições (POST/PUT)
 app.use(express.static(path.join(__dirname, 'public'))); // serve os arquivos de public/ (HTML, CSS, JS)
+app.use('/api/livros', rotasLivros);
+app.use('/api', rotasAuth);
+app.get('/api/teste-direto', (req, res) => res.json({ funcionou: true }));
 
 // ===== Rota de teste: confirma se o servidor e o banco estão funcionando =====
 app.get('/api/status', async (req, res) => {
