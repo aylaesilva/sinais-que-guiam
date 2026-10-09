@@ -9,7 +9,6 @@ const SALT_ROUNDS = 10;
 router.post('/cadastro', async (req, res) => {
   const { nome, email, senha, confirmar_senha, telefone, tipo_deficiencia } = req.body;
 
-  // Validações básicas (RN02 e campos obrigatórios)
   if (!nome || !email || !senha || !confirmar_senha) {
     return res.status(400).json({ erro: 'Preencha todos os campos obrigatórios.' });
   }
@@ -21,7 +20,6 @@ router.post('/cadastro', async (req, res) => {
   }
 
   try {
-    // RN01: e-mail único
     const [existentes] = await db.query('SELECT id FROM usuario WHERE email = ?', [email]);
     if (existentes.length > 0) {
       return res.status(409).json({ erro: 'Já existe uma conta com esse e-mail.' });
@@ -63,7 +61,6 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ erro: 'E-mail ou senha inválidos.' });
     }
 
-    // Por enquanto, sem sessão/token ainda (Etapa 19) — devolve os dados básicos do usuário
     res.json({
       mensagem: 'Login realizado com sucesso!',
       usuario: {
