@@ -1557,3 +1557,51 @@ html[data-tamanho-fonte="XXG"] body { font-size: 24px; }
   font-size: 10px;
   color: #888888;
 }
+/* ===== Comandos de voz ===== */
+.status-voz {
+  position: fixed;
+  left: 50%;
+  bottom: 90px;
+  transform: translateX(-50%);
+  max-width: 90%;
+  padding: 10px 16px;
+  border-radius: 20px;
+  background-color: #1a1a8c;
+  color: #ffffff;
+  font-size: 13px;
+  text-align: center;
+  z-index: 50;
+}
+
+.status-voz:empty {
+  display: none;
+}
+
+.botao-microfone.ouvindo {
+  background-color: #e74c3c;
+  animation: pulsar 1.2s ease-in-out infinite;
+}
+
+@keyframes pulsar {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .botao-microfone.ouvindo {
+    animation: none;
+  }
+}
+
+.assistente-voz[role="button"] {
+  cursor: pointer;
+}
+
+.assistente-voz[role="button"]:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
+}
+
+.assistente-voz.ouvindo {
+  opacity: 0.85;
+}
