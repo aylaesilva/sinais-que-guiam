@@ -11,4 +11,14 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
+// Testa a conexão assim que o servidor liga e mostra o motivo real se falhar
+pool.getConnection()
+  .then((conexao) => {
+    console.log('Banco de dados conectado.');
+    conexao.release();
+  })
+  .catch((erro) => {
+    console.error('NÃO CONECTOU AO BANCO:', erro.code || erro.message);
+  });
+
 module.exports = pool;

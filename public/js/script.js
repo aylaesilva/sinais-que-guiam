@@ -18,14 +18,27 @@ function escaparHtml(texto) {
     .replace(/'/g, '&#39;');
 }
 
-// Páginas que exigem login (proteção só no navegador; a sessão de verdade vem depois)
+// Páginas que não exigem login
+const PAGINAS_PUBLICAS = ['', 'index.html', 'login.html', 'cadastro.html', 'esqueceu-senha.html', 'codigo.html', 'redefinir-senha.html'];
+const PAGINA_ATUAL = window.location.pathname.split('/').pop();
+
+// Se a sessão no servidor acabou (ex.: servidor reiniciado), volta para o login
 (function () {
-  const publicas = ['', 'index.html', 'login.html', 'cadastro.html', 'esqueceu-senha.html', 'codigo.html', 'redefinir-senha.html'];
-  const paginaAtual = window.location.pathname.split('/').pop();
-  if (!publicas.includes(paginaAtual) && !obterUsuarioLogado()) {
-    window.location.href = 'login.html';
-  }
+  const fetchOriginal = window.fetch.bind(window);
+  window.fetch = async (...args) => {
+    const resposta = await fetchOriginal(...args);
+    if (resposta.status === 401 && !PAGINAS_PUBLICAS.includes(PAGINA_ATUAL)) {
+      sessionStorage.clear();
+      window.location.href = 'login.html';
+    }
+    return resposta;
+  };
 })();
+
+// Sem usuário guardado no navegador: vai para o login (o servidor também confere a sessão)
+if (!PAGINAS_PUBLICAS.includes(PAGINA_ATUAL) && !obterUsuarioLogado()) {
+  window.location.href = 'login.html';
+}
 
 // Gerar inicial do avatar a partir do nome
 function gerarInicialAvatar(nomeCompleto) {
@@ -711,12 +724,19 @@ if (botaoLerQrcode) {
 
 const botaoSair = document.getElementById('botao-sair');
 if (botaoSair) {
-  botaoSair.addEventListener('click', () => {
-    const confirmar = confirm('Tem certeza que deseja sair da conta?');
-    if (confirmar) {
-      sessionStorage.removeItem('usuarioLogado');
-      window.location.href = 'login.html';
+  botaoSair.addEventListener('click', async () => {
+    if (!confirm('Tem certeza que deseja sair da conta?')) return;
+
+    try {
+      await fetch('/api/logout', { method: 'POST' }); // encerra a sessão no servidor
+    } catch (erro) {
+      // mesmo sem resposta do servidor, limpa este aparelho
     }
+    sessionStorage.removeItem('usuarioLogado');
+    sessionStorage.removeItem('destinoNavegacao');
+    sessionStorage.removeItem('posicaoAtual');
+    localStorage.removeItem(CHAVE_PREFERENCIAS);
+    window.location.href = 'login.html';
   });
 }
 

@@ -78,12 +78,8 @@ router.get('/:id', async (req, res) => {
 
 // ===== POST /api/livros/:id/reserva =====
 router.post('/:id/reserva', async (req, res) => {
-  const { usuario_id } = req.body;
+  const usuarioId = req.session.usuarioId;
   const livroId = req.params.id;
-
-  if (!usuario_id) {
-    return res.status(400).json({ erro: 'Usuário não identificado.' });
-  }
 
   try {
     const [livros] = await db.query('SELECT * FROM livro WHERE id = ?', [livroId]);
@@ -94,7 +90,7 @@ router.post('/:id/reserva', async (req, res) => {
       return res.status(409).json({ erro: 'Este livro não está disponível no momento.' });
     }
 
-    const [usuarios] = await db.query('SELECT nome FROM usuario WHERE id = ?', [usuario_id]);
+    const [usuarios] = await db.query('SELECT nome FROM usuario WHERE id = ?', [usuarioId]);
     if (usuarios.length === 0) {
       return res.status(404).json({ erro: 'Usuário não encontrado.' });
     }
@@ -107,7 +103,7 @@ router.post('/:id/reserva', async (req, res) => {
     await db.query(
       `INSERT INTO reserva (codigo_reserva, usuario_id, livro_id, data_emprestimo, data_devolucao)
        VALUES (?, ?, ?, ?, ?)`,
-      [codigoReserva, usuario_id, livroId, dataEmprestimo, dataDevolucao]
+      [codigoReserva, usuarioId, livroId, dataEmprestimo, dataDevolucao]
     );
 
     await db.query('UPDATE livro SET disponivel = FALSE WHERE id = ?', [livroId]);
@@ -126,16 +122,10 @@ router.post('/:id/reserva', async (req, res) => {
 
 // ===== POST /api/livros/:id/favorito =====
 router.post('/:id/favorito', async (req, res) => {
-  const { usuario_id } = req.body;
-
-  if (!usuario_id) {
-    return res.status(400).json({ erro: 'Usuário não identificado.' });
-  }
-
   try {
     await db.query(
       'INSERT IGNORE INTO favorito (usuario_id, livro_id) VALUES (?, ?)',
-      [usuario_id, req.params.id]
+      [req.session.usuarioId, req.params.id]
     );
     res.status(201).json({ mensagem: 'Livro adicionado aos favoritos.' });
   } catch (erro) {
@@ -146,16 +136,10 @@ router.post('/:id/favorito', async (req, res) => {
 
 // ===== DELETE /api/livros/:id/favorito =====
 router.delete('/:id/favorito', async (req, res) => {
-  const { usuario_id } = req.body;
-
-  if (!usuario_id) {
-    return res.status(400).json({ erro: 'Usuário não identificado.' });
-  }
-
   try {
     await db.query(
       'DELETE FROM favorito WHERE usuario_id = ? AND livro_id = ?',
-      [usuario_id, req.params.id]
+      [req.session.usuarioId, req.params.id]
     );
     res.json({ mensagem: 'Livro removido dos favoritos.' });
   } catch (erro) {

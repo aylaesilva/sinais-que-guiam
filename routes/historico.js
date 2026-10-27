@@ -25,13 +25,8 @@ function formatarData(data) {
   return `${d.toLocaleDateString('pt-BR')}, ${hora}`;
 }
 
-// GET /api/historico?usuario_id=1
+// GET /api/historico  -> histórico do usuário logado
 router.get('/', async (req, res) => {
-  const { usuario_id } = req.query;
-  if (!usuario_id) {
-    return res.status(400).json({ erro: 'Usuário não identificado.' });
-  }
-
   try {
     const [itens] = await db.query(
       `SELECT id, tipo_acao, referencia, descricao, criado_em
@@ -39,7 +34,7 @@ router.get('/', async (req, res) => {
        WHERE usuario_id = ?
        ORDER BY criado_em DESC
        LIMIT 30`,
-      [usuario_id]
+      [req.session.usuarioId]
     );
 
     const historico = itens.map((item) => ({
@@ -54,11 +49,11 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST /api/historico  { usuario_id, tipo_acao, referencia, descricao }
+// POST /api/historico  { tipo_acao, referencia, descricao }
 router.post('/', async (req, res) => {
-  const { usuario_id, tipo_acao, referencia, descricao } = req.body;
+  const { tipo_acao, referencia, descricao } = req.body;
 
-  if (!usuario_id || !tipo_acao || !descricao) {
+  if (!tipo_acao || !descricao) {
     return res.status(400).json({ erro: 'Dados incompletos.' });
   }
   if (!TIPOS_VALIDOS.includes(tipo_acao)) {
@@ -69,13 +64,10 @@ router.post('/', async (req, res) => {
     await db.query(
       `INSERT INTO historico (usuario_id, tipo_acao, referencia, descricao)
        VALUES (?, ?, ?, ?)`,
-      [usuario_id, tipo_acao, referencia || null, descricao]
+      [req.session.usuarioId, tipo_acao, referencia || null, descricao]
     );
     res.status(201).json({ mensagem: 'Registrado no histórico.' });
   } catch (erro) {
-    if (erro.code === 'ER_NO_REFERENCED_ROW_2') {
-      return res.status(404).json({ erro: 'Usuário não encontrado.' });
-    }
     console.error('Erro ao registrar histórico:', erro.message);
     res.status(500).json({ erro: 'Erro interno ao registrar no histórico.' });
   }

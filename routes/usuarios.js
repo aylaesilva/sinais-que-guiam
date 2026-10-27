@@ -7,6 +7,14 @@ const TAMANHOS_FONTE = ['P', 'M', 'G', 'XG', 'XXG'];
 const VELOCIDADES_VOZ = ['0.5x', '1.0x', '2.0x'];
 const TEMAS = ['claro', 'escuro'];
 
+// RN04: cada pessoa só acessa e altera os próprios dados
+router.use('/:id', (req, res, next) => {
+  if (String(req.params.id) !== String(req.session.usuarioId)) {
+    return res.status(403).json({ erro: 'Você só pode acessar os seus próprios dados.' });
+  }
+  next();
+});
+
 // GET /api/usuarios/:id  -> dados do perfil + preferências (nunca devolve a senha)
 router.get('/:id', async (req, res) => {
   try {

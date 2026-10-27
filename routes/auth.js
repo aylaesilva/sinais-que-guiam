@@ -61,19 +61,37 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ erro: 'E-mail ou senha inválidos.' });
     }
 
-    res.json({
-      mensagem: 'Login realizado com sucesso!',
-      usuario: {
-        id: usuario.id,
-        nome: usuario.nome,
-        email: usuario.email,
-        tipo_deficiencia: usuario.tipo_deficiencia,
-      },
+    // Cria uma sessão nova a cada login (evita reaproveitar uma sessão antiga)
+    req.session.regenerate((erroSessao) => {
+      if (erroSessao) {
+        console.error('Erro ao criar a sessão:', erroSessao.message);
+        return res.status(500).json({ erro: 'Erro interno ao fazer login.' });
+      }
+
+      req.session.usuarioId = usuario.id;
+
+      res.json({
+        mensagem: 'Login realizado com sucesso!',
+        usuario: {
+          id: usuario.id,
+          nome: usuario.nome,
+          email: usuario.email,
+          tipo_deficiencia: usuario.tipo_deficiencia,
+        },
+      });
     });
   } catch (erro) {
     console.error('Erro no login:', erro.message);
     res.status(500).json({ erro: 'Erro interno ao fazer login.' });
   }
+});
+
+// ===== POST /api/logout =====
+router.post('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.clearCookie('connect.sid');
+    res.json({ mensagem: 'Sessão encerrada.' });
+  });
 });
 
 module.exports = router;
