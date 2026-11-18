@@ -2,6 +2,7 @@ const express = require('express');
 const db = require('../db');
 
 const router = express.Router();
+const LIMITE_RESERVAS_ATIVAS = 3;
 
 // ===== GET /api/livros?busca=...&filtro=titulo|autor|categoria =====
 router.get('/', async (req, res) => {
@@ -29,6 +30,8 @@ router.get('/', async (req, res) => {
         parametros.push(`%${busca}%`, `%${busca}%`, `%${busca}%`);
       }
     }
+
+    sql += ' ORDER BY l.titulo';
 
     const [livros] = await db.query(sql, parametros);
     res.json({ total: livros.length, livros });
@@ -82,12 +85,9 @@ router.post('/:id/reserva', async (req, res) => {
   const livroId = req.params.id;
 
   try {
-    const [livros] = await db.query('SELECT * FROM livro WHERE id = ?', [livroId]);
+    const [livros] = await db.query('SELECT id FROM livro WHERE id = ?', [livroId]);
     if (livros.length === 0) {
       return res.status(404).json({ erro: 'Livro não encontrado.' });
-    }
-    if (!livros[0].disponivel) {
-      return res.status(409).json({ erro: 'Este livro não está disponível no momento.' });
     }
 
     const [usuarios] = await db.query('SELECT nome FROM usuario WHERE id = ?', [usuarioId]);
@@ -95,18 +95,43 @@ router.post('/:id/reserva', async (req, res) => {
       return res.status(404).json({ erro: 'Usuário não encontrado.' });
     }
 
+    // Limite de reservas ativas por pessoa
+    const [ativas] = await db.query(
+      `SELECT COUNT(*) AS total FROM reserva WHERE usuario_id = ? AND status = 'ativa'`,
+      [usuarioId]
+    );
+    if (ativas[0].total >= LIMITE_RESERVAS_ATIVAS) {
+      return res.status(409).json({
+        erro: `Você já tem ${LIMITE_RESERVAS_ATIVAS} reservas ativas. Devolva um livro para reservar outro.`,
+      });
+    }
+
+    // "Pega" o livro numa única instrução: só funciona se ele ainda estiver disponível.
+    // Assim, duas pessoas não conseguem reservar o mesmo livro ao mesmo tempo.
+    const [pegou] = await db.query(
+      'UPDATE livro SET disponivel = FALSE WHERE id = ? AND disponivel = TRUE',
+      [livroId]
+    );
+    if (pegou.affectedRows === 0) {
+      return res.status(409).json({ erro: 'Este livro não está disponível no momento.' });
+    }
+
     const codigoReserva = 'RES-' + Date.now().toString().slice(-8);
     const dataEmprestimo = new Date();
     const dataDevolucao = new Date();
     dataDevolucao.setDate(dataDevolucao.getDate() + 14); // 14 dias de empréstimo
 
-    await db.query(
-      `INSERT INTO reserva (codigo_reserva, usuario_id, livro_id, data_emprestimo, data_devolucao)
-       VALUES (?, ?, ?, ?, ?)`,
-      [codigoReserva, usuarioId, livroId, dataEmprestimo, dataDevolucao]
-    );
-
-    await db.query('UPDATE livro SET disponivel = FALSE WHERE id = ?', [livroId]);
+    try {
+      await db.query(
+        `INSERT INTO reserva (codigo_reserva, usuario_id, livro_id, data_emprestimo, data_devolucao)
+         VALUES (?, ?, ?, ?, ?)`,
+        [codigoReserva, usuarioId, livroId, dataEmprestimo, dataDevolucao]
+      );
+    } catch (erroInsert) {
+      // Se não conseguiu registrar a reserva, devolve o livro para "disponível"
+      await db.query('UPDATE livro SET disponivel = TRUE WHERE id = ?', [livroId]);
+      throw erroInsert;
+    }
 
     res.status(201).json({
       codigo_reserva: codigoReserva,

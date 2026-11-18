@@ -5,11 +5,14 @@ require('dotenv').config();
 const db = require('./db');
 
 const rotasAuth = require('./routes/auth');
+const rotasRecuperacao = require('./routes/recuperacao');
 const rotasLivros = require('./routes/livros');
 const rotasFavoritos = require('./routes/favoritos');
 const rotasHistorico = require('./routes/historico');
 const rotasAjuda = require('./routes/ajuda');
 const rotasUsuarios = require('./routes/usuarios');
+const rotasReservas = require('./routes/reservas');
+const rotasEstantes = require('./routes/estantes');
 
 if (!process.env.SESSION_SECRET) {
   console.error('Falta a linha SESSION_SECRET no arquivo .env (veja o .env.example).');
@@ -51,7 +54,8 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ===== Rotas públicas =====
-app.use('/api', rotasAuth); // cadastro, login e logout
+app.use('/api', rotasAuth); // cadastro, login, me e logout
+app.use('/api/recuperacao', rotasRecuperacao); // esqueci minha senha
 
 app.get('/api/status', async (req, res) => {
   try {
@@ -77,6 +81,13 @@ app.use('/api/favoritos', rotasFavoritos);
 app.use('/api/historico', rotasHistorico);
 app.use('/api/ajuda', rotasAjuda);
 app.use('/api/usuarios', rotasUsuarios);
+app.use('/api/reservas', rotasReservas);
+app.use('/api/estantes', rotasEstantes);
+
+// Qualquer /api/... que não existe responde em JSON (em vez de uma página de erro)
+app.use('/api', (req, res) => {
+  res.status(404).json({ erro: 'Rota não encontrada.' });
+});
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
